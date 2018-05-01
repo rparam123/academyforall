@@ -23,25 +23,24 @@
 <div class="btn-group">
   <a href="/books/{{book.id}}/edit" class="btn btn-primary btn-sm">
     <i class="glyphicon glyphicon-edit"></i>
-    Edit book
+    Edit question
   </a>
   <a href="/books/{{book.id}}/delete" class="btn btn-danger btn-sm">
     <i class="glyphicon glyphicon-trash"></i>
-    Delete book
+    Delete question
   </a>
 </div>
 
 <div class="media">
-  <div class="media-left">
-    <img class="book-image" src="https://storage.googleapis.com/cloud-training/CP100/Bookshelf/bookplaceholder.jpg">
-  </div>
   <div class="media-body">
-    <h4 class="book-title">
-      {{book.title}}
+    <h4 class="book-description">
+      {{book.description}}
       <small>{{book.publishedDate}}</small>
     </h4>
-    <h5 class="book-author">By {{book.author|default('Unknown', True)}}</h5>
-    <p class="book-description">{{book.description}}</p>
+    <p class="book-choiceone">{{book.choiceone}}</p>
+    <p class="book-choicetwo">{{book.choicetwo}}</p>
+    <p class="book-choicethree">{{book.choicethree}}</p>
+    <p class="book-choicefour">{{book.choicefour}}</p>
   </div>
 </div>
 
