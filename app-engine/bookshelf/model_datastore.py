@@ -26,10 +26,12 @@ def init_app(app):
 
 # [START model]
 class Book(ndb.Model):
-    author = ndb.StringProperty()
-    description = ndb.StringProperty(indexed=False)
-    publishedDate = ndb.StringProperty()
-    title = ndb.StringProperty()
+    description = ndb.StringProperty()
+    choiceone = ndb.StringProperty()
+    choicetwo = ndb.StringProperty()
+    choicethree = ndb.StringProperty()
+    choicefour = ndb.StringProperty()
+    answer = ndb.StringProperty()
 # [END model]
 
 
@@ -50,10 +52,11 @@ def from_datastore(entity):
         entity = entity.pop()
     book = {}
     book['id'] = entity.key.id()
-    book['author'] = entity.author
     book['description'] = entity.description
-    book['publishedDate'] = entity.publishedDate
-    book['title'] = entity.title
+    book['choiceone'] = entity.choiceone
+    book['choicetwo'] = entity.choicetwo
+    book['choicethree'] = entity.choicethree
+    book['choicefour'] = entity.choicefour
     return book
 # [END from_datastore]
 
@@ -63,7 +66,7 @@ def from_datastore(entity):
 def list(limit=10, cursor=None):
     if cursor:
         cursor = Cursor(urlsafe=cursor)
-    query = Book.query().order(Book.title)
+    query = Book.query().order(Book.description)
     entities, cursor, more = query.fetch_page(limit, start_cursor=cursor)
     entities = builtin_list(map(from_datastore, entities))
     return entities, cursor.urlsafe() if len(entities) == limit else None
@@ -85,10 +88,12 @@ def update(data, id=None):
         book = key.get()
     else:
         book = Book()
-    book.author = data['author']
     book.description = data['description']
-    book.publishedDate = data['publishedDate']
-    book.title = data['title']
+    book.choiceone = data['choiceone']
+    book.choicetwo = data['choicetwo']
+    book.choicethree = data['choicethree']
+    book.choicefour = data['choicefour']
+    book.answer = data['answer']
     book.put()
     return from_datastore(book)
 
